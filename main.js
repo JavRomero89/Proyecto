@@ -7,43 +7,64 @@ const habilidades = {
 }
 let nameClassMate =["Morales", "Otniel", "Oscar", "Santiago", "Javier"]
 let nameTeacher = ["Ángel","Marcos","Pedro","Daniel","Millard"]
+let character1 ={}
+let character2 = {}
 
-function startGame() {
+//function startGame() {
     
     function createCharacter1() {
-        let personaje = Math.ceil(Math.random() * nameClassMate.length)
-       let character1 ={
+        let personaje = Math.ceil(Math.random() * nameClassMate.length-1) 
+        let hp=100//prompt("Health Points","100")
+        let str=20//prompt("Strength","20")
+        let def=8//prompt("Defense","8")
+        
+        character1 = {
         name: nameClassMate[personaje],
-        HP:(prompt("Health Points","100")),
-        STR:(prompt("Strength","20")),
-        DEF:(prompt("Defense","8"))
+        hp: hp,
+        str: str,
+        def: def
        }
-       console.log(character1);
+      console.log(character1);
     }
-     createCharacter1() 
+     createCharacter1()
 
      function createCharacter2() {
-        let personaje = Math.ceil(Math.random() * nameTeacher.length)
-       let character2 ={
+        let personaje = Math.ceil(Math.random() * nameTeacher.length-1)
+        let hp=100//prompt("Health Points","100")
+        let str=10//prompt("Strength","20")
+        let def=15//prompt("Defense","8")
+        
+       character2 ={
         name: nameTeacher[personaje],
-        HP:(prompt("Health Points","100")),
-        STR:(prompt("Strength","10")),
-        DEF:(prompt("Defense","15"))
+        hp: hp,
+        str: str,
+        def: def
        }
        console.log(character2);
     }
      createCharacter2() 
 
-     function Attack(character1,character2) {
-        let Peleita= character1.HP - (character2.STR - character1-DEF)
-        console.log("El enemigo atacó, Tu personaje tiene" + character1.HP);
-
-     }Attack()
-     function Attack(character1,character2) {
-        let Peleita= character2.HP - (character1.STR - character2-DEF)
-        console.log("El personaje atacó, El enemigo tiene" + character2.HP);
+     function attack1(character1,character2) {
+        
+        let peleita1= character2.str - character1.def;
+        character1.hp -= peleita1;
+        console.log("El enemigo atacó, Tu personaje tiene " + character1.hp + " de vida");
 
      }
-     Attack()
-}
-startGame()
+     attack1(character1,character2)
+
+     function attack2(character2,character1) {
+        
+        let peleita2= character1.str - character2.def;
+        character2.hp -= peleita2;
+        console.log("Tu Personaje atacó, el enemigo tiene " + character2.hp + " de vida");
+
+     }
+     attack2(character2,character1)
+    
+     if (character1.hp>0) {
+        attack1(character1,character2)
+     }
+     
+//}
+//startGame()
